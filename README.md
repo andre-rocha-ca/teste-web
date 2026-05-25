@@ -2,6 +2,11 @@
 
 The no-regret foundation for Teste. Next.js (App Router) + TypeScript + Tailwind v4 + shadcn/ui, deployed on Vercel Fluid Compute.
 
+- **Repository:** https://github.com/andre-rocha-ca/teste-web (private)
+- **Production:** auto-deployed from `main` via Vercel git integration.
+
+> **Note on repo location.** The repository temporarily lives under the `andre-rocha-ca` personal GitHub account because Teste does not yet have a company-owned GitHub organization. Transfer to a Teste-owned org is tracked in [TES-10](/TES/issues/TES-10) and will happen once that org exists.
+
 ## Stack
 
 - **Runtime:** Node.js 24 LTS (pinned via `.nvmrc` and `engines.node`).
@@ -67,13 +72,17 @@ next.config.ts
 tsconfig.json
 ```
 
-## Deploys
+## Deploy flow
 
-CI/CD is Vercel-native:
+CI/CD is Vercel-native — git is the source of truth:
 
-- Production: `main` branch (or `vercel deploy --prod` from CLI).
-- Previews: every PR / `vercel deploy`.
+1. **Branch** off `main` for any change.
+2. **Open a PR** against `main` on GitHub.
+3. Vercel posts a **preview deploy** URL on the PR — share it with reviewers (design, marketing, CEO) before merging.
+4. **Merge to `main`** → Vercel auto-deploys to **production**.
 
-## License
+Branch protection on `main` requires a PR — no direct pushes.
 
-MIT — see [LICENSE](./LICENSE).
+After every deploy, smoke-check `https://<deployment-url>/api/health` returns `{ "ok": true }`.
+
+Emergency-only fallback: `vercel deploy --prod` from the CLI bypasses the PR flow. Avoid unless production is broken and a PR loop would make things worse.
