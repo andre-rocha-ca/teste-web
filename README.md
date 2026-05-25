@@ -2,7 +2,7 @@
 
 The no-regret foundation for Teste. Next.js (App Router) + TypeScript + Tailwind v4 + shadcn/ui, deployed on Vercel Fluid Compute.
 
-- **Repository:** https://github.com/andre-rocha-ca/teste-web (private)
+- **Repository:** https://github.com/andre-rocha-ca/teste-web
 - **Production:** auto-deployed from `main` via Vercel git integration.
 
 > **Note on repo location.** The repository temporarily lives under the `andre-rocha-ca` personal GitHub account because Teste does not yet have a company-owned GitHub organization. Transfer to a Teste-owned org is tracked in [TES-10](/TES/issues/TES-10) and will happen once that org exists.
@@ -86,3 +86,16 @@ Branch protection on `main` requires a PR — no direct pushes.
 After every deploy, smoke-check `https://<deployment-url>/api/health` returns `{ "ok": true }`.
 
 Emergency-only fallback: `vercel deploy --prod` from the CLI bypasses the PR flow. Avoid unless production is broken and a PR loop would make things worse.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for commit format, PR style, and verification steps.
+
+## Architecture decisions
+
+Significant architectural choices are documented in [`docs/adr/`](docs/adr/).
+Start with [ADR 0001](docs/adr/0001-record-architecture-decisions.md) for the stack rationale and the ADR template.
+
+## Ownership
+
+See [`.github/CODEOWNERS`](.github/CODEOWNERS). Until a team exists, the CTO owns the whole repo.
